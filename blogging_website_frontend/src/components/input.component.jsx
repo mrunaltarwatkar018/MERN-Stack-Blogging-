@@ -26,7 +26,6 @@ const InputBox = ({name, type, id, value, placeholder, icon}) => {
                 ></i>
                 : ""
             }
-
         </div>
     );
 }

@@ -79,6 +79,7 @@ const UserAuthForm = ({type}) => {
                     </p>
 
                 }
+                
             </form>
         </section>
     );

@@ -2,5 +2,11 @@ icons: https://www.flaticon.com/free-icon-font/search_3917132?page=1&position=1&
 
         <i class="fi fi-rr-search"></i>
 
-Section 1: Navbar Section     
+Section 1: Navbar Section
+
 Section 2 : Setting Up Routes
+
+Section 4 : Page Animation
+https://www.npmjs.com/package/framer-motion
+
+        npm i framer-motion

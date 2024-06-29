@@ -26,8 +26,8 @@ export default {
 
         extend: {
             fontFamily: {
-              inter: ["'Inter'", "sans-serif"],
-              gelasio: ["'Gelasio'", "serif"]
+                inter: ["'Inter'", "sans-serif"],
+                gelasio: ["'Gelasio'", "serif"]
             },
         },
 

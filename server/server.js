@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
 import { nanoid } from 'nanoid';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import cors from 'cors';
 
 // schema below
 import User from './Schema/User.js';
@@ -16,6 +17,7 @@ let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;   // regex for
 let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;      // regex for password
 
 server.use(express.json())
+server.use(cors());
 
 mongoose.connect(process.env.DB_LOCATION, {
     autoIndex: true

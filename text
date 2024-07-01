@@ -10,3 +10,12 @@ Section 4 : Page Animation
 https://www.npmjs.com/package/framer-motion
 
         npm i framer-motion
+
+
+
+Libraries:
+1. React Router Dom
+2. React Icons
+3. Framer Motion
+4. react-hot-toast
+<!-- 5. react-toastify -->

@@ -36,7 +36,20 @@ const s3 = new aws.S3({
     region: 'us-east-1',
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-})
+});
+
+const generateUploadURL = async () => {
+    const date = new Date();
+
+    const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
+
+    return await s3.getSignedUrlPromise("putObject", {
+        Bucket: "mernblogwebsitee",
+        Key: imageName,
+        Expires: 1000,
+        ContentType: "image/jpeg",
+    });
+};
 
 const formatdatatoSend = (user) => {
     const access_token = jwt.sign(
@@ -63,6 +76,17 @@ const generateUsername = async (email) => {
 
     return username;
 };
+
+//upload image url route
+server.get("/get-upload-url", (req, res) => {
+    generateUploadURL()
+        .then( (url) => res.status(200).json({ uploadURL: url}))
+        .catch((err) => {
+            console.log(err.message);
+            return res.status(500).json({error: err.message});
+        });
+});
+
 
 server.post("/signup", (req, res) => {
     let { fullname, email, password } = req.body;

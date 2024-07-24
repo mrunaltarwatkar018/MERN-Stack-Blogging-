@@ -3,12 +3,13 @@ import logo from "../imgs/logo.png"
 import AnimationWrapper from "../common/page-animation";
 import defaultBanner from "../imgs/blog banner.png"
 import { uploadImage } from "../common/aws";
-import { useRef } from "react";
+import { useContext } from "react";
 import { Toaster, toast } from "react-hot-toast"; 
+import { EditorContext } from "../pages/editor.pages";
 
 const BlogEditor = () => {
 
-    let blogBannerRef = useRef();
+    let { blog, blog: { title, banner, content, tags, des }, setBlog } = useContext(EditorContext);
 
     const handleBannerUpload = (e) => {
         let img = e.target.files[0];
@@ -23,8 +24,10 @@ const BlogEditor = () => {
                 if ( url ) {
 
                     toast.dismiss(loadingToast);
-                    toast.success("Image uploaded successfully 👍", )
-                    blogBannerRef.current.src = url
+                    // toast.success("Image uploaded successfully 👍", );
+                    toast.success("Uploaded 👍", );
+
+                    setBlog({ ...blog, banner: url})
                 }
             } )
             .catch( err => {
@@ -46,6 +49,12 @@ const BlogEditor = () => {
         input.style.height = "auto";
         input.style.height = input.scrollHeight + "px";
 
+        setBlog({ ...blog, title: input.value });
+    }
+
+    const handleError = (e) => {
+        let img = e.target;
+        img.src = defaultBanner;
     }
 
     return (
@@ -56,7 +65,7 @@ const BlogEditor = () => {
                 </Link>
 
                 <p className="max-md:hidden text-black blog-title line-clamp-1 w-full">
-                    New Blog
+                    { title.length ? title : "New Blog" }
                 </p>
 
                 <div className="flex gap-4 ml-auto">
@@ -81,9 +90,9 @@ const BlogEditor = () => {
                             <label htmlFor="uploadBanner">
 
                                 <img
-                                    ref={blogBannerRef}
-                                    src={defaultBanner}
+                                    src={banner}
                                     className="z-20"
+                                    onError={handleError}
                                 />
 
                                 <input 
@@ -107,9 +116,7 @@ const BlogEditor = () => {
 
                         </textarea>
 
-
-
-
+                        <hr className="w-full opacity-10 my-5" />
 
                     </div>
                 </section>

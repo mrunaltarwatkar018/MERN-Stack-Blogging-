@@ -34,6 +34,20 @@ const BlogEditor = () => {
         }
     }
 
+    const handleTitleKeyDown = (e) => {
+        if(e.keyCode == 13) { // the user has press "enter" key button
+            e.preventDefault();
+        }
+    }
+
+    const handleTitleChange = (e) => {
+        let input = e.target;
+
+        input.style.height = "auto";
+        input.style.height = input.scrollHeight + "px";
+
+    }
+
     return (
         <>
             <nav className="navbar">
@@ -83,6 +97,19 @@ const BlogEditor = () => {
                             </label>
 
                         </div>
+
+                        <textarea
+                            placeholder="Blog Title"
+                            className="text-4xl font-medium w-full h-20 outline-none resize-none mt-10 leading-tight placeholder:opacity-40 bg-white"
+                            onKeyDown={handleTitleKeyDown}
+                            onChange={handleTitleChange} 
+                        >
+
+                        </textarea>
+
+
+
+
 
                     </div>
                 </section>

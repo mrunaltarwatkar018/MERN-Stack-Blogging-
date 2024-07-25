@@ -18,7 +18,7 @@ const BlogEditor = () => {
 
         setTextEditor(new EditorJS( {
             holderId: "textEditor",
-            data: '',
+            data: content,
             tools: tools,
             placeholder: "Let's write an awesome story"
         } ))
@@ -73,32 +73,32 @@ const BlogEditor = () => {
     const handlePublishEvent = () => {
 
         // Validate or cheack wheather the banner is empty or not
-        if ( !banner.length ) {
-            return toast.error("Upload a blog banner to publish it") 
-        }
+        // if ( !banner.length ) {
+        //     return toast.error("Upload a blog banner to publish it") 
+        // }
 
         // validate or check wheather the title is empty or not 
-        if(!title.length){
-            return toast.error("Write blog title to publish it")
-        }
+        // if(!title.length){
+        //     return toast.error("Write blog title to publish it")
+        // }
 
         // wheather or not i have editor in this page or not because it takes some time after refresh the page inorder to create an Editor
         // there is a dealy exist in between the title and editor
 
-        if ( textEditor.isReady ) {
+        // if ( textEditor.isReady ) {
             textEditor.save().then( data => {
-                if( data.blocks.length ){
+                // if( data.blocks.length ){
                     setBlog( { ...blog, content: data } );
                     setEditorState("publish");
-                } else {
-                    return toast.error("Write something in your blog to publish it")
-                }
+                // } else {
+                    // return toast.error("Write something in your blog to publish it")
+                // }
             } )
             .catch((err) => {
                 console.log(err);
             })
             
-        }
+        // }
     }
 
     return (
@@ -154,6 +154,7 @@ const BlogEditor = () => {
                         </div>
 
                         <textarea
+                            defaultValue={title}
                             placeholder="Blog Title"
                             className="text-4xl font-medium w-full h-20 outline-none resize-none mt-10 leading-tight placeholder:opacity-40 bg-white"
                             onKeyDown={handleTitleKeyDown}

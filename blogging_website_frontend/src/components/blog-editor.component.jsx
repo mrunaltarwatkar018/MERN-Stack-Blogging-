@@ -73,32 +73,32 @@ const BlogEditor = () => {
     const handlePublishEvent = () => {
 
         // Validate or cheack wheather the banner is empty or not
-        // if ( !banner.length ) {
-        //     return toast.error("Upload a blog banner to publish it") 
-        // }
+        if ( !banner.length ) {
+            return toast.error("Upload a blog banner to publish it") 
+        }
 
         // validate or check wheather the title is empty or not 
-        // if(!title.length){
-        //     return toast.error("Write blog title to publish it")
-        // }
+        if(!title.length){
+            return toast.error("Write blog title to publish it")
+        }
 
         // wheather or not i have editor in this page or not because it takes some time after refresh the page inorder to create an Editor
         // there is a dealy exist in between the title and editor
 
-        // if ( textEditor.isReady ) {
+        if ( textEditor.isReady ) {
             textEditor.save().then( data => {
-                // if( data.blocks.length ){
+                if( data.blocks.length ){
                     setBlog( { ...blog, content: data } );
                     setEditorState("publish");
-                // } else {
-                    // return toast.error("Write something in your blog to publish it")
-                // }
+                } else {
+                    return toast.error("Write something in your blog to publish it")
+                }
             } )
             .catch((err) => {
                 console.log(err);
             })
             
-        // }
+        }
     }
 
     return (

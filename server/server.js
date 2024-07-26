@@ -254,26 +254,25 @@ server.post("/create-blog", verifyJWT, (req, res) => {
     let { title, des, banner, tags, content, draft } = req.body;
 
     if ( !title.length ) {
-        return res.status(403).json( { error: "You must provide a title to publish the blog" } );
+        return res.status(403).json( { error: "You must provide a title" } );
     }
 
-    if ( !des.length || des.length > 200 ) {
-        // return res.status(403).json( { error: "You must provide a description to publish the blog. The description must be less than 200 characters" } )
-        return res.status(403).json( { error: "You must provide blog description under 200 characters" } );
-    }
+    if (!draft) {
+        if ( !des.length || des.length > 200 ) {
+            return res.status(403).json( { error: "You must provide blog description under 200 characters" } );
+        }
 
-    if ( !banner.length ) {
-        // return res.status(403).json( { error: "You must provide a banner to publish the blog" } )
-        return res.status(403).json( { error: "You must provide blog banner to publish the blog" } );
-    }
-    
-    if ( !content.blocks.length ) {
-        return res.status(403).json( {  error: "There must be some blog content to publish the blog" } );
-    }
+        if ( !banner.length ) {
+            return res.status(403).json( { error: "You must provide blog banner to publish the blog" } );
+        }
+        
+        if ( !content.blocks.length ) {
+            return res.status(403).json( {  error: "There must be some blog content to publish the blog" } );
+        }
 
-    if ( !tags.length || tags.length > 10 ) {
-        // return res.status(403).json({ error: "You must provide blog tags under 10 characters", });
-        return res.status(403).json( { error: "Provide tags in order to publish the blog, Maximum 10" } );
+        if ( !tags.length || tags.length > 10 ) {
+            return res.status(403).json( { error: "Provide tags in order to publish the blog, Maximum 10" } );
+        }
     }
 
     tags = tags.map((tag) => tag.toLowerCase());

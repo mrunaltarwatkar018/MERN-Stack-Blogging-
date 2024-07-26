@@ -1,11 +1,12 @@
-import i from "@editorjs/quote";
 import { useEffect, useRef, useState } from "react";
 
+export let activeTabLineRef;
+export let activeTabRef;
 
 const InPageNavigation = ( { routes, defaultHidden = [ ], defaultActiveIndex = 0, children } ) => {
 
-    let activeTabLineRef = useRef();
-    let activeTabRef = useRef();
+    activeTabLineRef = useRef();
+    activeTabRef = useRef();
 
     let [ inPageNavIndex, setInPageNavIndex ] = useState(defaultActiveIndex);
 

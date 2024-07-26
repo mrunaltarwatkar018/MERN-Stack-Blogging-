@@ -9,16 +9,4 @@
 #     "password": "John@123"
 # }
 
-POST http://localhost:3000/create-blog
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTM4NzQ5ZmM5NDljYzhhYjU1Y2JmOSIsImlhdCI6MTcyMTk5MzAzM30._XFJfboeTeXmJM36qTCnmVWd-xW8gcu24WW3e86eBn4
-
-{
-    "title": "test title1 @3 134 # 4$ 123 asdas 12,,",
-    "banner": "https://exapmle.com/image-url",
-    "des": "this is a short description",
-    "content": {
-        "blocks": [1, 2]
-    },
-    "tags": ["tag1", "tag2", "tag3"] 
-}
+GET http://localhost:3000/latest-blogs

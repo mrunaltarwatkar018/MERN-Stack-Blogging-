@@ -29,6 +29,8 @@ const BlogPage = () => {
 
     const [ loading, setLoading ] = useState(true);
 
+    const [ islikedByUser, setLikedByUser ] = useState(false);
+
     let { title, content, banner, author: { personal_info: { fullname, username: author_username, profile_img } }, publishedAt } = blog;
 
     const fetchBlog = () => {
@@ -36,7 +38,6 @@ const BlogPage = () => {
             .then( ( { data: { blog } } ) => {
 
                 setBlog(blog);
-                // console.log(blog.content);
 
                 axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", { tag: blog.tags[0], limit: 6, eliminate_blog: blog_id })
                 .then( ( { data } ) => {
@@ -70,7 +71,7 @@ const BlogPage = () => {
 
                 loading ? <Loader /> 
                 : 
-                <BlogContext.Provider value={ { blog, setBlog } } >
+                <BlogContext.Provider value={ { blog, setBlog, islikedByUser, setLikedByUser } } >
 
                     <div className="max-w-[900px] center py-10 max-lg:px-[5vw]" >
 

@@ -22,7 +22,7 @@ const BlogInteraction = () => {
                     <button
                         className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
                     >
-                        <i class="fi fi-rr-heart"></i>
+                        <i className="fi fi-rr-heart"></i>
                     </button>
 
                     <p className="text-xl text-dark-grey"> { total_likes } </p>
@@ -30,7 +30,7 @@ const BlogInteraction = () => {
                     <button
                         className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
                     >
-                        <i class="fi fi-rr-comment-dots"></i>
+                        <i className="fi fi-rr-comment-dots"></i>
                     </button>
 
                     <p className="text-xl text-dark-grey"> { total_comments } </p>

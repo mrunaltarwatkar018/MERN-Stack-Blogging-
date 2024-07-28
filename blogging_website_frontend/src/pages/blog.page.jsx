@@ -1,11 +1,12 @@
+import { useParams } from "react-router-dom";
 
 
 const BlogPage = () => {
 
-
+    let { blog_id } = useParams();
 
     return (
-        <h1>This is a Blog Page from component JSX file </h1>
+        <h1>This is a Blog Page for - { blog_id } </h1>
     )
 }
 

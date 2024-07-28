@@ -9,9 +9,16 @@
 #     "password": "John@123"
 # }
 
+# POST http://localhost:3000/get-blog
+# Content-Type: application/json
+
+# {
+#     "blog_id": "CETY4jwemeHaeGNkOSyzRBdO"
+# }
+
 POST http://localhost:3000/get-profile
 Content-Type: application/json
 
 {
-    "username": "null"
+    "username": "shardull"
 }

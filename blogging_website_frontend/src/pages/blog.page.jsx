@@ -36,7 +36,7 @@ const BlogPage = () => {
             .then( ( { data: { blog } } ) => {
 
                 setBlog(blog);
-                console.log(blog.content);
+                // console.log(blog.content);
 
                 axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", { tag: blog.tags[0], limit: 6, eliminate_blog: blog_id })
                 .then( ( { data } ) => {

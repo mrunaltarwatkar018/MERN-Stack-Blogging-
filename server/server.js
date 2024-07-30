@@ -15,6 +15,7 @@ import User from "./Schema/User.js";
 import Blog from "./Schema/Blog.js";
 import Notification from "./Schema/Notification.js";
 import Comment from "./Schema/Comment.js";
+import { populate } from "dotenv";
 
 const server = express();
 
@@ -575,6 +576,25 @@ server.post("/add-comment", verifyJWT, (req, res) => {
         })
 
     })
+
+})
+
+server.post("/get-blog-comments", (req, res) => {
+
+    let { blog_id, skip } = req.body;
+
+    let maxLimit = 5;
+
+    Comment.find( { blog_id, isReply: false } )
+        .populate( "commented_by", "personal_info.username personal_info.fullname personal_info.profile_img" )
+        .skip( skip )
+        .limit( maxLimit )
+        .sort( { 'commentedAt': -1 } )
+        .then( comment => { return res.status(200).json(comment) } )
+        .catch( err => { 
+            console.log(err) 
+            return res.status(500).json( { error: err.message } )
+        } )
 
 })
 

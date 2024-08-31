@@ -250,6 +250,49 @@ server.post("/goolgle-auth", async (req, res) => {
     })
 })
 
+server.post("/change-password", verifyJWT, (req, res) => {
+    let { currentPassword, newPassword } = req.body;
+
+    if ( !passwordRegex.test(currentPassword) || !passwordRegex.test(newPassword) ) {
+        return res.status(403).json({ error: "Password must be at least 6 to 20 characters long, contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character" })
+    }
+
+    User.findOne( { _id: req.user } )
+        .then( (user) => {
+            if (user.google_auth) {
+                // return res.status(403).json({ error: "You can't change account password because you signed in through google." })
+                return res.status(403).json( { error: "You are unable to change your account password because you signed in using Google Account." } )
+            }
+
+            bcrypt.compare( currentPassword, user.personal_info.password, (err, result) => {
+                if ( err ) {
+                    // return res.status(500).json({ error: "Some error occured while changing the password, Please try again later" })
+                    return res.status(500).json( { error: "An error occurred while attempting to change your password. Please try again later" } )
+                }
+
+                if ( !result ) {
+                    // return res.status(403).json({ error: "Current password is incorrect" })
+                    return res.status(403).json({ error: "Incorrect current password" })
+                }
+
+                bcrypt.hash(newPassword, 10, (err, hashed_password) => {
+                    User.findOneAndUpdate( { _id: req.user }, { "personal_info.password": hashed_password })
+                        .then( (u) => { 
+                            return res.status(200).json({ success: "Password changed successfully" })
+                        })
+                        .catch( (err) => {
+                            // return res.status(500).json({ error: "Some error occured while changing the password, Please try again later" })
+                            return res.status(500).json( { error: "An error occurred while attempting to change your password. Please try again later" } )
+                        })
+                })
+            })
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.status(500).json({ error: "User Not Found" });
+        })
+})
+
 server.post( "/latest-blogs", (req, res) => {
 
     let { page } = req.body;

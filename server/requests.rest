@@ -16,9 +16,42 @@
 #     "blog_id": "CETY4jwemeHaeGNkOSyzRBdO"
 # }
 
-POST http://localhost:3000/get-profile
+# POST http://localhost:3000/get-profile
+# Content-Type: application/json
+
+# {
+#     "username": "shardull"
+# }
+
+
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTRlZTA5NmY3MzkxNTY2Zjg5YmE0MSIsImlhdCI6MTcyNTEwNDc2NX0.uqVJ2zEXDbzPKbZySy5xw96G6_K5uUlE9JPdPKy2XJE
+
+# POST http://localhost:3000/signin
+# Content-Type: application/json
+
+# {
+#     "email" : "Yash@gmail.com",
+#     "password" : "Yash@123"
+# }
+
+
+// change password
+# POST http://localhost:3000/change-password
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTRlZTA5NmY3MzkxNTY2Zjg5YmE0MSIsImlhdCI6MTcyNTEwNDc2NX0.uqVJ2zEXDbzPKbZySy5xw96G6_K5uUlE9JPdPKy2XJE
+
+# {
+#     "currentPassword" : "Yash@1234",
+#     "newPassword" : "Yash@123"
+# }
+
+
+// sigin after changed password
+POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
-    "username": "shardull"
+    "email" : "Yash@gmail.com",
+    "password" : "Yash@1234"
 }

@@ -36,6 +36,11 @@ const userSchema = mongoose.Schema({
             } 
         },
     },
+    // if blog is allow to write only admin, other users can not write the blog
+    admin: {
+        type: Boolean,
+        default: false,
+    },
     social_links: {
         youtube: {
             type: String,

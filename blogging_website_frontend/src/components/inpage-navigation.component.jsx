@@ -41,7 +41,7 @@ const InPageNavigation = ( { routes, defaultHidden = [ ], defaultActiveIndex = 0
         }
     }, [width] )
 
-    console.log(width)
+    // console.log(width)
 
     return (
         <>

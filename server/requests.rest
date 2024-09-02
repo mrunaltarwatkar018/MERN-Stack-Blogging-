@@ -78,5 +78,29 @@
 
 
 
-GET http://localhost:3000/new-notification
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTRlZTA5NmY3MzkxNTY2Zjg5YmE0MSIsImlhdCI6MTcyNTE4NDAxNH0.65iWHo14wdYrCh0CkcVTCCBARi5ZaJzPT_Ec_qcWTlo
+# GET http://localhost:3000/new-notification
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTRlZTA5NmY3MzkxNTY2Zjg5YmE0MSIsImlhdCI6MTcyNTE4NDAxNH0.65iWHo14wdYrCh0CkcVTCCBARi5ZaJzPT_Ec_qcWTlo
+
+
+
+
+
+
+// Manage Blogs
+
+# POST http://localhost:3000/signin
+# Content-Type: application/json
+
+# {
+#     "email" : "yash@gmail.com",
+#     "password" : "Yash@123"
+# }
+
+# POST http://localhost:3000/user-written-blogs
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTRlZTA5NmY3MzkxNTY2Zjg5YmE0MSIsImlhdCI6MTcyNTIyNDQxNn0.x6YcLqj3AF-IR1wIWDu8wK11Nc6OOAm7KOuYE2wLtHE
+# Content-Type: application/json
+
+# {
+#     "page": 1,
+#     "draft": false
+# }
